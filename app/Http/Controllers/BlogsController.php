@@ -16,7 +16,7 @@ class BlogsController extends Controller
 {
     public function index() {
         //$blogs = Blog::where('status', 1)->latest()->get();
-        $blogs = Blog::latest()->get();
+        $blogs = Blog::latest()->paginate(10);
         return view('blogs.index')->withBlogs($blogs);
     }
 
@@ -49,7 +49,7 @@ class BlogsController extends Controller
 
         $blogByUser = $request->user()->blogs()->create($input);
         if ($request->category_id) {
-            $blogByUser->category()->sync($request->category_id);
+            $blogByUser->category()->sync($request->category_id, false);
         }
 
         //Mail
@@ -68,15 +68,9 @@ class BlogsController extends Controller
     }
 
     public function edit($id) {
-        $categories = Category::latest()->get();
+        $categories = Category::all();
         $blog = Blog::findOrFail($id);
-
-        $bc = array();
-        foreach ($blog->category as $c) {
-            $bc[] = $c->id - 1;
-        }
-        $filtered = Arr::except($categories, $bc);
-        return view('blogs.edit')->withBlog($blog)->withCategories($categories)->withFiltered($filtered);
+        return view('blogs.edit')->withBlog($blog)->withCategories($categories);
     }
 
     public function update(Request $request, $id) {

@@ -1,41 +1,40 @@
 @extends('main')
 @section('content')
 
-    <div class="container-fluid">
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
 
-    <article>
-    <div class="jumbotron">
-
-                <div class="col-md-12">
+    <h1><strong>{{ $blog-> title}}</strong></h1>
+        <br>
                     @if ($blog->featured_image)
-                    <img src="/images/featured_image/{{ $blog->featured_image ? $blog->featured_image : '' }}" alt="{{ Str::limit($blog->title, 50) }}" class="img-responsive featured_image">
-                    <br>
+                    <img src="/images/featured_image/{{ $blog->featured_image ? $blog->featured_image : '' }}" alt="{{ Str::limit($blog->title, 50) }}" height="400" width="750">
                     @endif
-                </div>
-
-        <h1>{{ $blog-> title}}</h1>
-
+                    <br>
+                
+    </div>
 
         @if(Auth::user())
         @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2 && Auth::user()->id == $blog->user_id)
-            <div class="row">
-                <div class="col-md-12">  
-                <a class="btn btn-primary pull-left" href="{{ route('blogs.edit', $blog->id) }}">Edit </a>
+            
+        <div class="col-md-8 col-md-offset-2">
+                <a class="btn btn-primary pull-left btn-block" href="{{ route('blogs.edit', $blog->id) }}">Edit Blog</a>
+                
                 <form method="post" action="{{ route('blogs.delete', $blog->id) }}">
                     @csrf
                     {{ method_field('delete') }}
-                    <button type="submit" class="btn btn-danger pull-left">Delete</button>
+                    <button type="submit" class="btn btn-danger pull-left btn-block">Delete Blog</button>
                 </form>
                 </div>
-             </div>
-             @endif
-             @endif
+        @endif
+        @endif
 
-        <div class="col-md-12">
-            <p>{{ $blog-> body }}</p>
+        <div class="col-md-8 col-md-offset-2">
+        <br>
+            <p>{!! ($blog->body) !!}</p>
+            <br>
 
             @if($blog->user)
-                Author: <a href="{{ route('users.show', $blog->user->name) }}">{{ $blog->user->name }}</a> | Posted: {{ $blog->created_at->diffForHumans() }}
+                <strong>Author: </strong> <a href="{{ route('users.show', $blog->user->name) }}">{{ $blog->user->name }}</a> | <strong>Posted: </strong> {{ $blog->created_at->diffForHumans() }}
             @endif
             <hr>
             <strong>Categories</strong>
@@ -43,9 +42,6 @@
             <span><a href="{{ route('categories.show', $category->slug) }}">{{ $category->name }}</a></span>
             @endforeach
         <div>
- 
-
-    </article>
 
     </div>
 

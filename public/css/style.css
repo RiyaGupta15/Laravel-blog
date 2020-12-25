@@ -17,15 +17,11 @@
 }
 
 .jumbotron {
-    color: #fff;
     border-bottom: 1px solid #d3e0e9;
     border-radius: 0 !important;
     background: linear-gradient(to right, #3097d4, #fff);
 }
 
-.white-text {
-    color: #ffffff;
-}
 
 .featured_image {
     width: 100%;
@@ -34,4 +30,26 @@
 .blog-spacing {
     margin-right: 30px;
     margin-top: 30px;
+}
+
+.btn-h1-spacing {
+    margin-top: 18px;
+}
+
+.form-spacing-top {
+    margin-top: 30px;
+}
+
+.jumbotron2 {
+    background-image: url("/images/featured_image/background2.jpg");
+    background-size: cover;
+  }
+
+  .text-spacing {
+    margin-left: 350px;
+    color: rgb(255, 255, 255);
+}
+
+.form-spacing {
+    margin-top: 10px;
 }

@@ -18,43 +18,41 @@
 
 @section('content')
 
-    <div class="container-fluid">
-        <div class="jumbotron">
-            <h1>Edit | {{ $blog->title }}</h1>
-        <div>
-
-        <div class="col-md-12">
-            <form action="{{ route('blogs.update', $blog->id) }}" method="POST" enctype="multipart/form-data">
+<div class = "row">
+        
+        <div class=" jumbotron2 col-md-10 col-md-offset-1">
+        <div class="text-spacing">
+        <h1><b>Edit</b><br><h1>
+            <h3>Title - {{ $blog->title }}</h3>
+        <br>
+        </div>
+        </div>
+        <hr>
+        <div class = "col-md-10 col-md-offset-1">
+            <form action="{{ route('blogs.update', $blog->id) }}" method="POST" data-parsley-validate = "" enctype="multipart/form-data">
             @csrf
             {{ method_field('PATCH') }}
                 <div class="form-group">
-                    <label for="ttile">Title</label>
+                    <label for="title" class="form-spacing-top">Title</label>
                     <input type="text" name="title" class="form-control" value="{{ $blog->title }}">
                 </div>
 
                 <div class="form-group">
-                    <label for="body">Body</label>
+                    <label for="body" class="form-spacing">Body</label>
                     <textarea name="body" class="form-control">{{ $blog->body}}</textarea>
                 <div>
 
-                <div class="form-group form-check form-check-inline">
-                {{ $blog->category->count() ? 'Current categories ' : '' }} &nbsp;
-                @foreach($blog->category as $category)
-                <input type="checkbox" value="{{ $category->id }}" name="category_id[]" class="form-check-input" checked>
-                <label class="btn-margin-right form-check-label">{{ $category->name }}</label>
+               
+                <label for="category_id" class='form-spacing-top'>Categories</label>
+                <select class="form-control select2-multi" name="category_id[]" multiple>
+                @foreach($categories as $category)
+                    <option value='{{ $category->id }}'>{{ $category->name }}</option>
                 @endforeach
-                </div>
-
-                <div class="form-group form-check form-check-inline">
-                {{ $filtered->count() ? 'Unused categories ' : '' }} &nbsp;
-                @foreach($filtered as $category)
-                <input type="checkbox" value="{{ $category->id }}" name="category_id[]" class="form-check-input">
-                <label class="btn-margin-right form-check-label">{{ $category->name }}</label>
-                @endforeach
-                </div>
+                </select>
+                
 
                 <div class="form-group">
-                <label for="featured_image">Featured Image</label>
+                <label for="featured_image" class="form-spacing">Featured Image</label>
                 <input type="file" name="featured_image" class="form-control">
                 </div>
 
@@ -62,5 +60,15 @@
             </form>
         </div>
     </div>
+
+@endsection
+
+@section('scripts')
+    <script src="{{URL::asset('js/select2.min.js')}}"></script>
+
+    <script type="text/javascript">
+        $('.select2-multi').select2();
+        $('.select2-multi').select2().val({!! json_encode($blog->category()->allRelatedIds()) !!}).trigger('change');
+    </script>
 
 @endsection
