@@ -17,7 +17,7 @@
         @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2 && Auth::user()->id == $blog->user_id)
             
         <div class="col-md-8 col-md-offset-2">
-                <a class="btn btn-primary pull-left btn-block" href="{{ route('blogs.edit', $blog->id) }}">Edit Blog</a>
+                <a class="btn btn-primary pull-left btn-block form-spacing-top" href="{{ route('blogs.edit', $blog->id) }}">Edit Blog</a>
                 
                 <form method="post" action="{{ route('blogs.delete', $blog->id) }}">
                     @csrf
@@ -43,6 +43,5 @@
             @endforeach
         <div>
 
-    </div>
-
+</div>
 @endsection

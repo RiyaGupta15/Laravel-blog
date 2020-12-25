@@ -37,6 +37,10 @@
 <button class="btn btn-warning btn-block">
         <a href="{{ route('users.index') }}" class="text-white">Manage Users</a>
 </button>
+<br>
+<button class="btn btn-link btn-block">
+        <a href="{{ route('profile.index') }}" class="text-white">View / Edit profile</a>
+</button>
 
 </div>
 @endif
@@ -48,8 +52,12 @@
         <a href="{{ route('blogs.create') }}" class="text-white">Create Blog</a>
 </button>
 <br>
-<button class="btn btn-success btn-block">
+<button class="btn btn-warning btn-block">
         <a href="{{ route('categories.create') }}" class="text-white">Create Categories</a>
+</button>
+<br>
+<button class="btn btn-info btn-block">
+        <a href="{{ route('profile.index') }}" class="text-white">View / Edit profile</a>
 </button>
 
 </div>
@@ -58,8 +66,16 @@
 
 @if(Auth::user() && Auth::user()->role_id == 3)
 <div class="col-md-8 col-md-offset-2">
-    <button class="btn btn-primary btn-block">
-        <a href="" class="text-white">What can I do</a>
+    <button class="btn btn-warning btn-block">
+        <a href="{{ route('blogs') }}" class="text-white">View All Blogs</a>
+</button>
+<br>
+<button class="btn btn-primary btn-block">
+        <a href="/categories" class="text-white">View All Categories</a>
+</button>
+<br>
+<button class="btn btn-danger btn-block">
+        <a href="{{ route('profile.index') }}" class="text-white">View / Edit profile</a>
 </button>
 
 

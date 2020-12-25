@@ -7,6 +7,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\ProfileController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,3 +50,8 @@ Route::resource('users', UserController::Class)->middleware('admin');
 
 Route::get('contact', [MailController::Class, 'contact'])->name('contact');
 Route::post('contact/send', [MailController::Class, 'send'])->name('mail.send');
+
+Route::get('/profile', [ProfileController::Class, 'index'])->middleware('auth')->name('profile.index');
+Route::get('/profile/{id}', [ProfileController::Class, 'edit'])->middleware('auth')->name('profile.edit');
+Route::patch('/profileUpdate', [ProfileController::Class, 'update'])->middleware('auth')->name('profile.update');
+Route::delete('/profileDelete', [ProfileController::class, 'destroy'])->middleware('auth')->name('profile.destroy');
