@@ -41,9 +41,10 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard')->middleware('auth');
 Route::get('/admin/blogs', [AdminController::class, 'blogs'])->name('admin.blogs')->middleware(['auth', 'admin']);
+Route::get('/about', [AdminController::class, 'about'])->name('about');
 
 Route::resource('categories', CategoryController::class);
 Route::resource('users', UserController::Class)->middleware('admin');
 
-Route::get('contact', [MailController::Class, 'contact']);
+Route::get('contact', [MailController::Class, 'contact'])->name('contact');
 Route::post('contact/send', [MailController::Class, 'send'])->name('mail.send');

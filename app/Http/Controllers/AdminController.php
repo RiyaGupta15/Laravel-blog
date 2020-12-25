@@ -16,4 +16,16 @@ class AdminController extends Controller
         $draftedBlogs = Blog::where('status', 0)->latest()->get();
         return view('admin.blogs')->withPublishedBlogs($publishedBlogs)->withDraftedBlogs($draftedBlogs);
     }
+
+    public function about() {
+        $first = 'Riya';
+        $last = 'Gupta';
+        $fullname = $first . " " . $last;
+        $email = 'riya123@gmail.com';
+        $data = [];
+        $data['email'] = $email;
+        $data['fullname'] = $fullname;
+
+        return view('admin/about')->withData($data);
+    }
 }

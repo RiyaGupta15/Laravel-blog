@@ -1,4 +1,21 @@
 @extends('main')
+
+
+@section('stylesheets')
+    <link rel="stylesheet" href="{{URL::asset('css/select2.min.css')}}">
+
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+            tinymce.init({
+                selector: 'textarea',
+                plugins: 'link code',
+                menubar: false
+            })
+    </script>
+
+@endsection
+
 @section('content')
 
     <div class="container-fluid">
