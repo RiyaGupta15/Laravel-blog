@@ -1,0 +1,24 @@
+.btn {
+    border-radius: 5px;
+    margin: 10px;
+    height:max-content;
+    width: max-content;
+}
+
+.jumbotron {
+    margin-right: -20px;
+    margin-left: -20px;
+    margin-top: -25px;
+}
+
+.white-text {
+    color: #ffffff;
+}
+
+.btn-margin-right {
+    margin-right: 20px;
+}
+
+.featured_image {
+    width: 100%;
+}
