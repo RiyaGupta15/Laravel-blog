@@ -45,7 +45,7 @@
     background-size: cover;
   }
 
-  .text-spacing {
+.text-spacing {
     margin-left: 350px;
     color: rgb(255, 255, 255);
 }
@@ -53,3 +53,8 @@
 .form-spacing {
     margin-top: 10px;
 }
+
+.text-white {
+    color: rgb(255, 255, 255);
+}
+

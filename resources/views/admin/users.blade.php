@@ -14,7 +14,7 @@
 <form action="{{ route('users.update', $user->id) }}" method="post">
 @csrf
 {{ method_field('patch') }}
-<div class="form-group">
+<div class="form-group form-spacing-top">
 <input class="form-control" value="{{ $user->name }}" disabled>
 </div>
 
@@ -34,7 +34,7 @@
 <input class="form-control" value="{{ $user->created_at->diffForHumans() }}" disabled>
 </div>
 
-<button class="btn btn-primary pull-left">Update</button>
+<button class="btn btn-primary pull-left btn-margin-right">Update</button>
 
 </form>
 

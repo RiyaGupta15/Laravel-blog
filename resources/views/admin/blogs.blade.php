@@ -8,11 +8,11 @@
 
 <div class="row">
 <div class="col-md-6">
-<h3>Published</h3>
+<h3><strong>Published</strong></h3>
 <hr>
     @foreach($publishedBlogs as $blog)
         <h2><a href="{{ route('blogs.show', $blog->id) }}">{{ $blog->title }}</a></h2>
-        <p>{{ Str::limit($blog->body, 150) }}</p>
+        <p>{{ Str::limit(strip_tags($blog->body, 150)) }}</p>
 
 
         <form action="{{ route('blogs.update', $blog->id) }}" method="POST">
@@ -27,11 +27,11 @@
 </div>
 
 <div class="col-md-6">
-<h3>Drafts</h3>
+<h3><strong>Drafts</strong></h3>
 <hr>
     @foreach($draftedBlogs as $blog)
         <h2><a href="{{ route('blogs.show', $blog->id) }}">{{ $blog->title }}</a></h2>
-        <p>{{ Str::limit($blog->body, 150) }}</p>
+        <p>{{ Str::limit(strip_tags($blog->body, 150)) }}</p>
 
 
         <form action="{{ route('blogs.update', $blog->id) }}" method="POST">

@@ -17,25 +17,25 @@
 
 
 @if(Auth::user() && Auth::user()->role_id == 1)
-<div class="col-md-12">
-    <button class="btn btn-primary">
-        <a href="{{ route('blogs.create') }}" class="white-text">Create Blog</a>
+<div class="col-md-8 col-md-offset-2">
+    <button class="btn btn-primary btn-block">
+        <a href="{{ route('blogs.create') }}" class="text-white">Create Blog</a>
 </button>
-
-<button class="btn btn-success">
-        <a href="{{ route('admin.blogs') }}" class="white-text">Publish Blog</a>
+<br>
+<button class="btn btn-success btn-block">
+        <a href="{{ route('admin.blogs') }}" class="text-white">Publish Blog</a>
 </button>
-
-<button class="btn btn-danger">
-        <a href="{{ route('blogs.trash') }}" class="white-text">Trashed Blogs</a>
+<br>
+<button class="btn btn-danger btn-block">
+        <a href="{{ route('blogs.trash') }}" class="text-white">Trashed Blogs</a>
 </button>
-
-<button class="btn btn-info">
-        <a href="{{ route('categories.create') }}" class="white-text">Create Categories</a>
+<br>
+<button class="btn btn-info btn-block">
+        <a href="{{ route('categories.create') }}" class="text-white">Create Categories</a>
 </button>
-
-<button class="btn btn-warning">
-        <a href="{{ route('users.index') }}" class="white-text">Manage Users</a>
+<br>
+<button class="btn btn-warning btn-block">
+        <a href="{{ route('users.index') }}" class="text-white">Manage Users</a>
 </button>
 
 </div>
@@ -43,13 +43,13 @@
 
 
 @if(Auth::user() && Auth::user()->role_id == 2)
-<div class="col-md-12">
-    <button class="btn btn-primary">
-        <a href="{{ route('blogs.create') }}" class="white-text">Create Blog</a>
+<div class="col-md-8 col-md-offset-2">
+    <button class="btn btn-primary btn-block">
+        <a href="{{ route('blogs.create') }}" class="text-white">Create Blog</a>
 </button>
-
-<button class="btn btn-success">
-        <a href="{{ route('categories.create') }}" class="white-text">Create Categories</a>
+<br>
+<button class="btn btn-success btn-block">
+        <a href="{{ route('categories.create') }}" class="text-white">Create Categories</a>
 </button>
 
 </div>
@@ -57,9 +57,9 @@
 
 
 @if(Auth::user() && Auth::user()->role_id == 3)
-<div class="col-md-12">
-    <button class="btn btn-primary">
-        <a href="" class="white-text">What can I do</a>
+<div class="col-md-8 col-md-offset-2">
+    <button class="btn btn-primary btn-block">
+        <a href="" class="text-white">What can I do</a>
 </button>
 
 
