@@ -16,7 +16,7 @@ class BlogsController extends Controller
 {
     public function index() 
     {
-        $blogs = Blog::latest()->paginate(10);
+        $blogs = Blog::latest()->paginate(5);
         return view('blogs.index')->withBlogs($blogs);
     }
 
@@ -74,6 +74,13 @@ class BlogsController extends Controller
 
     public function update(Request $request, $id) 
     {
+
+        $rules = [
+            'title'=> ['required', 'min:5', 'max:100'],
+            'body'=> ['required', 'min: 100'],
+        ];
+
+        $this->validate($request, $rules);
         $input = $request->all();
         $blog = Blog::findOrFail($id);
 

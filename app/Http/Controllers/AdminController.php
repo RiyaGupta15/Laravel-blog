@@ -12,8 +12,8 @@ class AdminController extends Controller
     }
 
     public function blogs() {
-        $publishedBlogs = Blog::where('status', 1)->latest()->get();
-        $draftedBlogs = Blog::where('status', 0)->latest()->get();
+        $publishedBlogs = Blog::where('status', 1)->latest()->paginate(5);
+        $draftedBlogs = Blog::where('status', 0)->latest()->paginate(5);
         return view('admin.blogs')->withPublishedBlogs($publishedBlogs)->withDraftedBlogs($draftedBlogs);
     }
 

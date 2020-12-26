@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Blog;
 use App\Models\User;
 use Auth;
+use App\Events\NewComment;
 
 class CommentController extends Controller
 {
@@ -28,6 +29,8 @@ class CommentController extends Controller
         ]);
 
         $comment = Comment::where('id', $comment->id)->with('user')->first();
+
+        event(new NewComment($comment));
 
         return $comment->toJson();
     }

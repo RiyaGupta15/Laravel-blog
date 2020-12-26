@@ -13,7 +13,7 @@
     </div>
 
     @if(Auth::user())
-        @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 2 && Auth::user()->id == $blog->user_id)
+        @if(Auth::user()->role_id == 1 || (Auth::user()->role_id == 2 && Auth::user()->id == $blog->user_id))
             <div class="col-md-8 col-md-offset-2">
                 <a class="btn btn-primary pull-left btn-block form-spacing-top" href="{{ route('blogs.edit', $blog->id) }}">Edit Blog</a>
                 <form method="post" action="{{ route('blogs.delete', $blog->id) }}">
@@ -40,7 +40,6 @@
         @endforeach
         <hr>
     <div>
-
 
     <h3>Comments:</h3>
 <div id="app">
@@ -80,6 +79,7 @@
 @section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 
 <script>
     var app = new Vue ({
@@ -92,6 +92,7 @@
         },
         mounted() {
             this.getComments();
+            this.listen();
         },
         methods: {
             getComments() {
@@ -115,6 +116,12 @@
                   .catch(function (error) {
                       console.log(error);
                   });
+              },
+              listen() {
+                  window.Echo.channel('blog.'+this.blog.id)
+                        .listen('NewComment', (comment) => {
+                            this.comments.unshift(comment)
+                        })
               }
         }
     });
