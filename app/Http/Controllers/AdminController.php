@@ -25,7 +25,6 @@ class AdminController extends Controller
         $data = [];
         $data['email'] = $email;
         $data['fullname'] = $fullname;
-
         return view('admin/about')->withData($data);
     }
 }

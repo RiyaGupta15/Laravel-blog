@@ -16,7 +16,8 @@ class ProfileController extends Controller
         return view('users.profile');
     }
 
-    public function edit($id) {
+    public function edit($id) 
+    {
         $user = User::findOrFail($id);
         return view('users.editProfile')->withUser($user);
     }
@@ -28,6 +29,7 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
@@ -48,6 +50,7 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy()
     {
         $user = Auth::user();
@@ -55,5 +58,4 @@ class ProfileController extends Controller
         Session::flash('success', 'Your profile has been deleted.');
         return redirect('register');
     }
-
 }

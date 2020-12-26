@@ -6,7 +6,6 @@
             <h1>Edit Category</h1>
         <div>
 
-
         <div class="col-md-12">
             <form action="{{ route('categories.update', $category->id) }}" method="POST">
             @csrf

@@ -15,12 +15,14 @@ class AdminMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
+    
     public function handle(Request $request, Closure $next)
     {
         //return $next($request);
 
         $user = $request->user();
-        if ($user->role->id == 1) {
+        if ($user->role->id == 1) 
+        {
             return $next($request);
         }
 

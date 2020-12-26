@@ -21,6 +21,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id',
+        'api_token',
     ];
 
     /**
@@ -38,19 +39,23 @@ class User extends Authenticatable
      *
      * @var array
      */
+    
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
-    public function role(){
+    public function role()
+    {
         return $this->belongsTo(Role::class);
     }
 
-    public function blogs(){
+    public function blogs()
+    {
         return $this->hasMany(Blog::class);
     }
 
-    public function comments(){
+    public function comments()
+    {
         return $this->hasMany(Comment::class);
     }
 }

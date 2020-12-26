@@ -8,11 +8,13 @@ use Session;
 
 class MailController extends Controller
 {
-    public function contact() {
+    public function contact() 
+    {
         return view('emails.contact');
     }
 
-    public function send(Request $request) {
+    public function send(Request $request) 
+    {
 
         $rules = [
 			'name' => ['required', 'max:32'],

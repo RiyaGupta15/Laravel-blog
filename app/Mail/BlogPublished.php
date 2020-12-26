@@ -20,6 +20,7 @@ class BlogPublished extends Mailable implements ShouldQueue
      *
      * @return void
      */
+
     public function __construct(Blog $blog, User $user)
     {
         $this->blog = $blog;
@@ -31,6 +32,7 @@ class BlogPublished extends Mailable implements ShouldQueue
      *
      * @return $this
      */
+    
     public function build()
     {
         $this->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))
