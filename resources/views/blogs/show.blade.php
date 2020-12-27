@@ -41,11 +41,83 @@
         <hr>
     <div>
 
-    <h3>Comments:</h3>
 
-    <div style="margin-bottom:50px;">
-        <textarea class="form-control" rows="3" name="body" placeholder="Leave a comment"></textarea>
-        <button class="btn btn-success" style="margin-top:10px">Save Comment</button>
+    <h3>Comments:</h3>
+<div id="app">
+<div class="media" style="margin-top:20px;" v-for="comment in comments">
+    <div class="media-left">
+        <a href="#">
+            <img class="media-object" src="http://placeimg.com/80/80" alt="...">
+        </a>
     </div>
+    <div class="media-body">
+        <h4 class="media-heading">@{{comment.user.name}}</h4>
+        <p>
+          @{{comment.body}}
+        </p>
+        <span style="color: #aaa;">on @{{comment.created_at}}</span>
+    </div>
+</div>
+<br>
+<br>
+
+<div style="margin-bottom:50px;" v-if="user">
+    <textarea class="form-control" rows="3" name="body" placeholder="Leave a comment" v-model="commentBox"></textarea>
+    <button class="btn btn-success" style="margin-top:10px" @click.prevent="postComment">Save Comment</button>
+</div>
+
+<div v-else>
+    <h4>You must be logged in to submit a comment!</h4> 
+    @csrf
+    <form action="{{route('login') }}">
+        <button type="submit" class="btn btn-primary">Login Now</button>
+</form>
+</div>
+</div>
+
+@endsection
+
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>
+    var app = new Vue ({
+        el: "#app",
+        data: {
+            comments: {},
+            commentBox: '',
+            blog: {!! $blog->toJson() !!},
+            user: {!! Auth::check() ? Auth::user()->toJson() : 'null' !!}
+        },
+        mounted() {
+            this.getComments();
+        },
+        methods: {
+            getComments() {
+                  axios.get(`/api/blogs/${this.blog.id}/comments`)
+                       .then((response) => {
+                           this.comments = response.data
+                       })
+                       .catch(function (error) {
+                           console.log(error);
+                       });
+              },
+              postComment() {
+                  axios.post(`/api/blogs/${this.blog.id}/comment`, {
+                      api_token: this.user.api_token,
+                      body: this.commentBox
+                  })
+                  .then((response) => {
+                      this.comments.unshift(response.data);
+                      this.commentBox = '';
+                  })
+                  .catch(function (error) {
+                      console.log(error);
+                  });
+              }
+        }
+    });
+    </script>
 
 @endsection

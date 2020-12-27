@@ -36,7 +36,7 @@
                 <a href="{{ route('users.index') }}" class="text-white">Manage Users</a>
             </button>
             <br>
-            <button class="btn btn-link btn-block">
+            <button class="btn btn-primary btn-block">
                 <a href="{{ route('profile.index') }}" class="text-white">View / Edit profile</a>
             </button>
         </div>
